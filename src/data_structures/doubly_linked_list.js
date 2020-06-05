@@ -1,5 +1,3 @@
-import { NoEmitOnErrorsPlugin } from "webpack";
-
 class DLLNode {
   constructor({ element = undefined, next = this, prev = this, isSentinel = false }) {
     this.element = element;
@@ -66,12 +64,12 @@ class DoublyLinkedList {
     }
   }
 
-  forEach(callback) {
+  forEach(callback, self = this) {
     let i = 0;
     let node = this._head();
     while (node != this._sentinel) {
-      callback(node.element, i, this);
-      i++
+      callback(node.element, i, self);
+      i += 1
       node = node.next;
     }
   }
